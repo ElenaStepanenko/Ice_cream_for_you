@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -6,6 +8,9 @@ class StartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Timer(const Duration(seconds: 2), () {
+      Navigator.of(context).pushNamed("/map_page");
+    });
     return Scaffold(
         body: Container(
       color: const Color.fromRGBO(248, 230, 255, 1.0),
@@ -47,7 +52,7 @@ class StartPage extends StatelessWidget {
                       fontWeight: FontWeight.w200,
                       color: Color.fromRGBO(22, 33, 61, 1.0),
                       fontFamily: "Notable"),
-                ),
+                )
               ],
             )
           ],
