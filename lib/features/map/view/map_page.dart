@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
-
-import 'package:flutter_svg/svg.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
