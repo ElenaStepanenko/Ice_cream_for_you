@@ -9,6 +9,7 @@ environment:
   sdk: '>=2.19.2 <3.0.0'
 
 dependencies:
+  cloud_firestore:
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.4
@@ -35,3 +36,5 @@ flutter:
     - family: Notable
       fonts:
         - asset: assets/fonts/Notable-Regular.ttf
+
+
