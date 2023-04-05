@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -6,6 +8,11 @@ class StartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Timer(
+      const Duration(seconds: 2), () {
+        Navigator.of(context).pushNamed("/map_page");
+    }
+    );
     return Scaffold(
         body: Container(
           color: const Color.fromRGBO(248, 230, 255, 1.0),
@@ -47,20 +54,9 @@ class StartPage extends StatelessWidget {
                               fontFamily: "Notable"),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
-                // Container(
-                //   alignment: Alignment.center,
-                //   child: Image.asset("assets/images/fon.png"),
-                // ),
-                // Container(
-                //   width: double.infinity,
-                //   padding: const EdgeInsets.only(top: 635),
-                //   //padding: EdgeInsets.symmetric(horizontal: -40),
-                //   child: Image.asset("assets/images/")
-                //
-                //   ),
                 Container(
                   alignment: Alignment.bottomCenter,
                   child: Image.asset("assets/images/rez_fill.png", scale: 0.85),
