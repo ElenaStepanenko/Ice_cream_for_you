@@ -9,6 +9,7 @@ class IceCreamApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'IceCreamForYou',
       theme: theme,
       routes: routes,
