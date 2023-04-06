@@ -5,5 +5,5 @@ import 'package:project/features/shops/shop.dart';
 final routes = {
   '/': (context) => const StartPage(),
   '/map_page': (context) => const MapPage(),
-  // '/shop_page': (context) => const ShopsPage(),
+  '/shop_page': (context) => const ShopsPage(),
 };

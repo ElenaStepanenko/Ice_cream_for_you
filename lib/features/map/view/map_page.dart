@@ -16,22 +16,17 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       //persistentFooterAlignment: Per,
-      backgroundColor: const Color.fromRGBO(236, 249, 218, 1.0),
+      //backgroundColor: const Color.fromRGBO(236, 249, 218, 1.0),
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: Stack(
+            alignment: Alignment.bottomCenter,
             children: [
               const YandexMap(),
-              // Image.asset("assets/images/map.png",
-              //   alignment: Alignment.topCenter,
-              //   width: MediaQuery.of(context).size.width,
-              //   height: MediaQuery.of(context).size.height,
-              //   fit: BoxFit.cover,
-              // ),
               Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0, bottom: 100.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -136,48 +131,52 @@ class _MapPageState extends State<MapPage> {
                     ],
                   ),
             ),
+              Container(
+                //alignment: Alignment.bottomCenter,
+                decoration: const BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 20.0,
+                      spreadRadius: 7.0,
+                      offset: Offset(0, -5),
+                    ),
+                ]),
+                child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/images/navbar_without_shadow.svg",
+                        //color: Colors.cyan,
+                        width: MediaQuery.of(context).size.width,
+                        fit: BoxFit.cover,
+                        //height: MediaQuery.of(context).size.height,
+                        //fit: BoxFit.fill,
+                      ),
+                      BottomNavigationBar(
+                        elevation: 0,
+                        backgroundColor: const Color.fromRGBO(255, 255, 255, 0.0),
+                        items: [
+                          BottomNavigationBarItem(
+                            icon: IconButton(icon: SvgPicture.asset("assets/images/nav_menu.svg"), onPressed: (){
+                              Navigator.of(context).pushNamed("/shop_page");
+                            },),
+                            label: '',
+                          ),
+                          BottomNavigationBarItem(
+                            icon: IconButton(icon: SvgPicture.asset("assets/images/nav_map.svg"), onPressed: (){},),
+                            label: '',
+                          ),
+                          BottomNavigationBarItem(
+                            icon: IconButton(icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"), onPressed: (){},),
+                            label: '',
+                          ),
+                        ],
+                      ),
+                    ]),
+              ),
           ]),
         ),
-      ),
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          boxShadow: [BoxShadow(
-            color: Colors.black26,
-            blurRadius: 20.0,
-            spreadRadius: 7.0,
-            offset: Offset(0, -5),
-          ),
-        ]),
-        child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [
-          SvgPicture.asset(
-            "assets/images/navbar_without_shadow.svg",
-            //color: Colors.cyan,
-            width: MediaQuery.of(context).size.width,
-            fit: BoxFit.cover,
-            //height: MediaQuery.of(context).size.height,
-            //fit: BoxFit.fill,
-          ),
-          BottomNavigationBar(
-            elevation: 0,
-            backgroundColor: const Color.fromRGBO(255, 255, 255, 0.0),
-            items: [
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset("assets/images/nav_menu.svg"),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset("assets/images/nav_map.svg"),
-                label: '',
-              ),
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"),
-                label: '',
-              ),
-            ],
-          ),
-        ]),
       ),
     );
   }
