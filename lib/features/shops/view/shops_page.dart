@@ -170,15 +170,22 @@ class _ShopsPageState extends State<ShopsPage> {
                                   backgroundColor: const Color.fromRGBO(255, 255, 255, 0.0),
                                   items: [
                                     BottomNavigationBarItem(
-                                      icon: SvgPicture.asset("assets/images/nav_menu.svg"),
+                                      icon: IconButton(icon: SvgPicture.asset("assets/images/nav_menu.svg"), onPressed: (){
+                                        Navigator.of(context).pushNamed("/shop_page");
+                                      },),
                                       label: '',
                                     ),
                                     BottomNavigationBarItem(
-                                      icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"),
+                                      icon: IconButton(icon: SvgPicture.asset("assets/images/nav_map.svg"), onPressed: (){
+                                        Navigator.of(context).pushNamed("/map_page");
+                                      },),
                                       label: '',
                                     ),
                                     BottomNavigationBarItem(
-                                      icon: SvgPicture.asset("assets/images/nav_menu.svg"),
+                                      icon: IconButton(icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"),
+                                        onPressed: (){
+                                          Navigator.of(context).pushNamed("/ice_cream_list");
+                                        },),
                                       label: '',
                                     ),
                                   ],

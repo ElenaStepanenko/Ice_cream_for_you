@@ -1,181 +1,286 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
-// import '../ice_cream.dart';
-//
-// class IceCreamsPage extends StatefulWidget {
-//   const IceCreamsPage({super.key});
-//
-//   @override
-//   State<IceCreamsPage> createState() => _IceCreamsPageState();
-// }
-//
-// class _IceCreamsPageState extends State<IceCreamsPage> {
-//   List<IceCream> iceCreams = [
-//     IceCream("Американец", Image.asset("assets/images/ice_cream_photo.png"), "85 руб."),
-//   ];
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: const Color.fromRGBO(218, 230, 252, 1.0),
-//       body: SafeArea(
-//         child: Container(
-//           width: double.infinity,
-//           height: double.infinity,
-//           decoration: const BoxDecoration(
-//               image: DecorationImage(
-//                 image: AssetImage("assets/images/decor.png"),
-//                 fit: BoxFit.fill,
-//               )
-//           ),
-//           child:
-//           Padding(
-//             padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
-//             child: Column(
-//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//               children: [
-//                 Row(
-//                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                     children: [
-//                       Container(
-//                         padding:
-//                         const EdgeInsets.symmetric(horizontal: 15.0),
-//                         width: 270,
-//                         //color: Colors.white,
-//                         decoration: BoxDecoration(
-//                           color: Colors.white,
-//                           borderRadius: BorderRadius.circular(30.0),
-//                           boxShadow: [
-//                             BoxShadow(
-//                               color: Colors.grey.withOpacity(0.4),
-//                               spreadRadius: 5,
-//                               blurRadius: 30,
-//                               offset: const Offset(
-//                                   0, 10), // changes position of shadow
-//                             ),
-//                           ],
-//                         ),
-//
-//                         child: const TextField(
-//                           decoration: InputDecoration(
-//                             icon: Icon(
-//                               Icons.search_rounded,
-//                               size: 30.0,
-//                             ),
-//                             hintText: "Поиск",
-//                             //fillColor: Colors.white,
-//                             //filled: true,
-//                             border: OutlineInputBorder(
-//                               borderSide: BorderSide.none,
-//                             ),
-//                           ),
-//                         ),
-//                       ),
-//                       Container(
-//                         decoration: BoxDecoration(
-//                           borderRadius: BorderRadius.circular(30.0),
-//                           boxShadow: [
-//                             BoxShadow(
-//                               color: Colors.grey.withOpacity(0.5),
-//                               spreadRadius: 5,
-//                               blurRadius: 16,
-//                               offset: const Offset(
-//                                   0, 10), // changes position of shadow
-//                             ),
-//                           ],
-//                         ),
-//                         child: const CircleAvatar(
-//                           radius: 30.0,
-//                           backgroundColor:
-//                           Color.fromRGBO(108, 62, 126, 1.0),
-//                           child: IconButton(
-//                             icon: Icon(
-//                               Icons.favorite,
-//                               size: 30.0,
-//                               color: Color.fromRGBO(255, 255, 255, 1.0),
-//                             ),
-//                             onPressed: null,
-//                           ),
-//                         ),
-//                       )
-//                     ]),
-//                 const SizedBox(height: 40.0,),
-//                 Row(
-//                     children: [
-//                       DropdownButton<String>(
-//                         items: <String>['Славица', 'Инмарко', 'Мороженое', 'Ice Cream'].map((String value) {
-//                           return DropdownMenuItem<String>(
-//                             value: value,
-//                             child: Text(value),
-//                           );
-//                         }).toList(),
-//                         onChanged: (_) {},
-//                       )
-//                     ]),
-//                 const SizedBox(height: 40.0,),
-//                 ListView.builder(
-//                     padding: const EdgeInsets.all(20),
-//                     itemCount: shops.length,
-//                     itemBuilder: (_, index) => Card(
-//                       color: const Color.fromRGBO(255, 255, 255, 0.0),
-//                       elevation: 0,
-//                       margin: const EdgeInsets.only(top: 40),
-//                       child: ListTile(
-//                         title: Text(shops[index].name,
-//                           style: const TextStyle(fontSize: 20),),
-//                         subtitle: Text(shops[index].address),
-//                         leading: IconButton(
-//                           icon: SvgPicture.asset("assets/images/icon.svg", width: 50,),
-//                           onPressed: null,
-//                         ),
-//                         onTap: () => print("${shops[index].name} - tap"),
-//                       ),
-//                     )),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//       bottomNavigationBar:
-//       Container(
-//         decoration: const BoxDecoration(
-//             boxShadow: [BoxShadow(
-//               color: Colors.black26,
-//               blurRadius: 20.0,
-//               spreadRadius: 7.0,
-//               offset: Offset(0, -5),
-//             ),
-//             ]),
-//         child: Stack(
-//             alignment: Alignment.bottomCenter,
-//             children: [
-//               SvgPicture.asset(
-//                 "assets/images/navbar_without_shadow.svg",
-//                 //color: Colors.cyan,
-//                 width: MediaQuery.of(context).size.width,
-//                 fit: BoxFit.cover,
-//                 //height: MediaQuery.of(context).size.height,
-//                 //fit: BoxFit.fill,
-//               ),
-//               BottomNavigationBar(
-//                 elevation: 0,
-//                 backgroundColor: const Color.fromRGBO(255, 255, 255, 0.0),
-//                 items: [
-//                   BottomNavigationBarItem(
-//                     icon: SvgPicture.asset("assets/images/nav_menu.svg"),
-//                     label: '',
-//                   ),
-//                   BottomNavigationBarItem(
-//                     icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"),
-//                     label: '',
-//                   ),
-//                   BottomNavigationBarItem(
-//                     icon: SvgPicture.asset("assets/images/nav_menu.svg"),
-//                     label: '',
-//                   ),
-//                 ],
-//               ),
-//             ]),
-//       ),
-//     );
-//   }
-// }
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import '../ice_cream.dart';
+
+class IceCreamsPage extends StatefulWidget {
+  const IceCreamsPage({super.key});
+
+  @override
+  State<IceCreamsPage> createState() => _IceCreamsPageState();
+}
+
+class _IceCreamsPageState extends State<IceCreamsPage> {
+  final List<IceCream> iceCreams = [
+    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
+    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
+    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
+    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
+    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
+    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
+    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
+    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color.fromRGBO(218, 230, 252, 1.0),
+      body: SafeArea(
+        child: SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child:
+          Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                Image.asset("assets/images/decor.png",
+                  alignment: Alignment.topCenter,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  fit: BoxFit.cover,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+                  child: Column(
+                    children: [
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                              width: 270,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(30.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.4),
+                                    spreadRadius: 5,
+                                    blurRadius: 30,
+                                    offset: const Offset(
+                                        0, 10), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: const TextField(
+                                decoration: InputDecoration(
+                                  icon: Icon(
+                                    Icons.search_rounded,
+                                    size: 30.0,
+                                  ),
+                                  hintText: "Поиск",
+                                  border: OutlineInputBorder(
+                                    borderSide: BorderSide.none,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 5,
+                                    blurRadius: 16,
+                                    offset: const Offset(
+                                        0, 10), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: const CircleAvatar(
+                                radius: 30.0,
+                                backgroundColor:
+                                Color.fromRGBO(108, 62, 126, 1.0),
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.favorite,
+                                    size: 30.0,
+                                    color: Color.fromRGBO(255, 255, 255, 1.0),
+                                  ),
+                                  onPressed: null,
+                                ),
+                              ),
+                            )
+                          ]),
+                      const SizedBox(height: 15.0,),
+                      Row(
+                          children: [
+                            DropdownButton<String>(
+                              icon: const Icon(Icons.arrow_drop_down, color: Color.fromRGBO(59, 100, 228, 1.0),),
+                              items: <String>['Славица', 'Инмарко', 'Мороженое', 'Ice Cream'].map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              hint: const Text('Выбрать фирму', style: TextStyle(color: Color.fromRGBO(59, 100, 228, 1.0)),),
+                              onChanged: (_) {},
+                            )
+                          ]),
+                      //const SizedBox(height: 15.0,),
+                      Container(
+                        height: MediaQuery.of(context).size.height - 175,
+                        width: MediaQuery.of(context).size.width,
+                        child: GridView.count(
+                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          crossAxisCount: 2,
+                          childAspectRatio: 5/6,
+                          shrinkWrap: true,
+                          //physics: const NeverScrollableScrollPhysics(),
+                          //direction: Axis.horizontal,
+                          //spacing: 2,
+                          //runSpacing: 25,
+                          // alignment: WrapAlignment.spaceBetween,
+                          // runAlignment: WrapAlignment.start,
+                          children:
+                            List.generate(iceCreams.length, (index) => Button(
+                              child: Container(
+                                    decoration: const BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                                    ),
+                                    //padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                    margin: const EdgeInsets.all(5.0),
+                                    //width: 50,
+                                    height: 158,
+                                    //color: Colors.white,
+                                    child: Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            Image.asset("assets/images/ice_cream_photo.png",
+                                              alignment: Alignment.center,),
+                                            SvgPicture.asset("assets/images/iten_decor.svg",
+                                              alignment: Alignment.bottomCenter,
+                                              width: MediaQuery.of(context).size.width,
+                                              //height: MediaQuery.of(context).size.height,
+                                              //fit: BoxFit.cover,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(16.0),
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.start,
+                                                    children: [
+                                                      SvgPicture.asset("assets/images/availability_icon.svg",),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Text(iceCreams[index].price,
+                                                            style: const TextStyle(fontSize: 20, color: Color.fromRGBO(108, 62, 126, 1.0)),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Row(
+                                                        children: [
+                                                          Text(iceCreams[index].name),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+
+                                            ),
+                                          ],
+                                        ),
+                              ),
+                            ),
+                            // ListView.builder(
+                            //     //scrollDirection: Axis.vertical,
+                            //     shrinkWrap: true,
+                            //     //padding: const EdgeInsets.all(10),
+                            //     itemCount: iceCreams.length,
+                            //     itemBuilder: (_, index) => Container(
+                            //       margin: const EdgeInsets.all(5.0),
+                            //       width: 50,
+                            //       height: 158,
+                            //       color: Colors.white,
+                            //       // child: Stack(
+                            //       //   children: [
+                            //       //     SvgPicture.asset("assets/images/iten_decor.svg",
+                            //       //       alignment: Alignment.topCenter,
+                            //       //       width: MediaQuery.of(context).size.width,
+                            //       //       height: MediaQuery.of(context).size.height,
+                            //       //       fit: BoxFit.cover,
+                            //       //     ),
+                            //       //     SvgPicture.asset("assets/images/availability_icon.svg"),
+                            //       //     Image.asset("assets/images/ice_cream_photo.png"),
+                            //       //     Row(
+                            //       //       mainAxisSize: MainAxisSize.max,
+                            //       //       children: [
+                            //       //         Text(iceCreams[index].price,
+                            //       //           style: const TextStyle(fontSize: 20),),
+                            //       //       ],
+                            //       //     ),
+                            //       //     Row(
+                            //       //       children: [
+                            //       //         Text(iceCreams[index].name),
+                            //       //       ],
+                            //       //     )
+                            //       //   ],
+                            //       // ),
+                            //     )),
+                            ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                      boxShadow: [BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 20.0,
+                        spreadRadius: 7.0,
+                        offset: Offset(0, -5),
+                      ),
+                      ]),
+                  child: Stack(
+                      alignment: Alignment.bottomCenter,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/images/navbar_without_shadow.svg",
+                          //color: Colors.cyan,
+                          width: MediaQuery.of(context).size.width,
+                          fit: BoxFit.cover,
+                          //height: MediaQuery.of(context).size.height,
+                          //fit: BoxFit.fill,
+                        ),
+                        BottomNavigationBar(
+                          elevation: 0,
+                          backgroundColor: const Color.fromRGBO(255, 255, 255, 0.0),
+                          items: [
+                            BottomNavigationBarItem(
+                              icon: IconButton(icon: SvgPicture.asset("assets/images/nav_menu.svg"), onPressed: (){
+                                Navigator.of(context).pushNamed("/shop_page");
+                              },),
+                              label: '',
+                            ),
+                            BottomNavigationBarItem(
+                              icon: IconButton(icon: SvgPicture.asset("assets/images/nav_map.svg"), onPressed: (){
+                                Navigator.of(context).pushNamed("/map_page");
+                              },),
+                              label: '',
+                            ),
+                            BottomNavigationBarItem(
+                              icon: IconButton(icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"),
+                                onPressed: (){
+                                  Navigator.of(context).pushNamed("/ice_cream_list");
+                                },),
+                              label: '',
+                            ),
+                          ],
+                        ),
+                      ]),
+                ),
+              ]),
+        ),
+      ),
+    );
+  }
+}
