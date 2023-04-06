@@ -164,11 +164,16 @@ class _MapPageState extends State<MapPage> {
                             label: '',
                           ),
                           BottomNavigationBarItem(
-                            icon: IconButton(icon: SvgPicture.asset("assets/images/nav_map.svg"), onPressed: (){},),
+                            icon: IconButton(icon: SvgPicture.asset("assets/images/nav_map.svg"), onPressed: (){
+                              Navigator.of(context).pushNamed("/map_page");
+                            },),
                             label: '',
                           ),
                           BottomNavigationBarItem(
-                            icon: IconButton(icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"), onPressed: (){},),
+                            icon: IconButton(icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"),
+                              onPressed: (){
+                                Navigator.of(context).pushNamed("/ice_cream_list");
+                            },),
                             label: '',
                           ),
                         ],

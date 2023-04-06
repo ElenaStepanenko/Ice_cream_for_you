@@ -8,6 +8,6 @@ final routes = {
   '/': (context) => const StartPage(),
   '/map_page': (context) => const MapPage(),
   '/shop_page': (context) => const ShopsPage(),
-  // '/ice_cream_list': (context) => const ..Page(),
-  // '/ice_cream_page': (context) => const IceCreamPage(),
+  '/ice_cream_list': (context) => const IceCreamsPage(),
+  '/ice_cream_page': (context) => const IceCreamPage(),
 };
