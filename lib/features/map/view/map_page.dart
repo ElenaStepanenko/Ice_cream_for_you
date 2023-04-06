@@ -16,20 +16,20 @@ class _MapPageState extends State<MapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       //persistentFooterAlignment: Per,
-      backgroundColor: const Color.fromRGBO(252, 252, 247, 1.0),
+      backgroundColor: const Color.fromRGBO(236, 249, 218, 1.0),
       body: SafeArea(
         child: Container(
           width: double.infinity,
           height: double.infinity,
           child: Stack(
             children: [
-              //const YandexMap(),
-              Image.asset("assets/images/map.png",
-                alignment: Alignment.topCenter,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                fit: BoxFit.cover,
-              ),
+              const YandexMap(),
+              // Image.asset("assets/images/map.png",
+              //   alignment: Alignment.topCenter,
+              //   width: MediaQuery.of(context).size.width,
+              //   height: MediaQuery.of(context).size.height,
+              //   fit: BoxFit.cover,
+              // ),
               Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
@@ -139,8 +139,7 @@ class _MapPageState extends State<MapPage> {
           ]),
         ),
       ),
-      bottomNavigationBar:
-      Container(
+      bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           boxShadow: [BoxShadow(
             color: Colors.black26,
@@ -169,11 +168,11 @@ class _MapPageState extends State<MapPage> {
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"),
+                icon: SvgPicture.asset("assets/images/nav_map.svg"),
                 label: '',
               ),
               BottomNavigationBarItem(
-                icon: SvgPicture.asset("assets/images/nav_menu.svg"),
+                icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"),
                 label: '',
               ),
             ],
