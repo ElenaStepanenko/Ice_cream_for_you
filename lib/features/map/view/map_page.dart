@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project/features/map/view/location.dart';
-
 import 'dart:math' as math;
-
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MapPage extends StatefulWidget {
@@ -19,6 +17,7 @@ class _MapPageState extends State<MapPage> {
   final mapControllerCompleter = Completer<YandexMapController>();
   final defaultPos = const KrasnoyarskLocation();
   final List<MapObject> _mapObjects = [];
+  final MapObject clusterPlacemarks = clusterPlacemark();
 
   void _getCurrentLocation() async {
     Position position = await _determinePosition();
@@ -26,7 +25,7 @@ class _MapPageState extends State<MapPage> {
   }
 
   Future<Position> _determinePosition() async {
-    bool serviceEnabled;
+    // bool serviceEnabled;
     LocationPermission permission;
 
     permission = await Geolocator.checkPermission();
@@ -84,6 +83,7 @@ class _MapPageState extends State<MapPage> {
   void initState() {
     super.initState();
     _startPosition(defaultPos);
+    _mapObjects.add(clusterPlacemarks);
   }
 
   void changeCurPosition(PlacemarkMapObject placemark) {
@@ -175,7 +175,6 @@ class _MapPageState extends State<MapPage> {
                           ),
                         )
                       ]),
-<<<<<<< HEAD
                   Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                     Container(
                       decoration: BoxDecoration(
@@ -187,55 +186,6 @@ class _MapPageState extends State<MapPage> {
                             blurRadius: 16,
                             offset: const Offset(
                                 0, 10), // changes position of shadow
-=======
-                    ],
-                  ),
-            ),
-              Container(
-                //alignment: Alignment.bottomCenter,
-                decoration: const BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 20.0,
-                      spreadRadius: 7.0,
-                      offset: Offset(0, -5),
-                    ),
-                ]),
-                child: Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      SvgPicture.asset(
-                        "assets/images/navbar_without_shadow.svg",
-                        //color: Colors.cyan,
-                        width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.cover,
-                        //height: MediaQuery.of(context).size.height,
-                        //fit: BoxFit.fill,
-                      ),
-                      BottomNavigationBar(
-                        elevation: 0,
-                        backgroundColor: const Color.fromRGBO(255, 255, 255, 0.0),
-                        items: [
-                          BottomNavigationBarItem(
-                            icon: IconButton(icon: SvgPicture.asset("assets/images/nav_menu.svg"), onPressed: (){
-                              Navigator.of(context).pushNamed("/shop_page");
-                            },),
-                            label: '',
-                          ),
-                          BottomNavigationBarItem(
-                            icon: IconButton(icon: SvgPicture.asset("assets/images/nav_map.svg"), onPressed: (){
-                              Navigator.of(context).pushNamed("/map_page");
-                            },),
-                            label: '',
-                          ),
-                          BottomNavigationBarItem(
-                            icon: IconButton(icon: SvgPicture.asset("assets/images/nav_ice_cream.svg"),
-                              onPressed: (){
-                                Navigator.of(context).pushNamed("/ice_cream_list");
-                            },),
-                            label: '',
->>>>>>> c0e558bc2c314667ae9b4e6df31e56380f4fb79c
                           ),
                         ],
                       ),
