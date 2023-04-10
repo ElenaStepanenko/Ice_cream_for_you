@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-//import '../ice_cream.dart';
+import '../../../repositories/ice_cream/models/ice_cream_repository.dart';
 
 class IceCreamPage extends StatefulWidget {
   const IceCreamPage({super.key});
@@ -10,18 +10,21 @@ class IceCreamPage extends StatefulWidget {
 }
 
 class _IceCreamPageState extends State<IceCreamPage> {
-  // final List<IceCream> iceCreams = [
-  //   IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-  //   IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-  //   IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-  //   IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-  //   IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-  //   IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-  //   IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-  //   IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-  // ];
+
+
+  // @override
+  // void didChangeDependencies() {
+  //   final args = ModalRoute.of(context)?.settings.arguments;
+  //   assert(args != null && args is List<var>, 'You must provide not null Map args');
+  //   arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
+  //   setState(() {});
+  //   super.didChangeDependencies();
+  // }
+
   @override
   Widget build(BuildContext context) {
+    final iceCream = (ModalRoute.of(context)?.settings.arguments ?? <IceCream>{}) as IceCream;
+    // print(arguments['name']);
     return Scaffold(
       backgroundColor: const Color.fromRGBO(218, 230, 252, 1.0),
       body: SafeArea(
@@ -30,7 +33,7 @@ class _IceCreamPageState extends State<IceCreamPage> {
           height: double.infinity,
           child:
           Stack(
-              alignment: Alignment.bottomCenter,
+              alignment: AlignmentDirectional.bottomCenter,
               children: [
                 Image.asset("assets/images/decor.png",
                   alignment: Alignment.topCenter,
@@ -38,23 +41,100 @@ class _IceCreamPageState extends State<IceCreamPage> {
                   height: MediaQuery.of(context).size.height,
                   fit: BoxFit.cover,
                 ),
+                Positioned(
+                      top: MediaQuery.of(context).size.height/2 - 250,
+                      child:
+                      Container(
+
+                        //width: MediaQuery.of(context).size.width,
+                        child: iceCream.photo,
+
+                      )
+                        // Image.asset("assets/images/item_ice_cream_photo.png")
+                        //fit: BoxFit.cover,
+
+                      //fit: BoxFit.cover,
+                    ),
                 SvgPicture.asset("assets/images/item_vector.svg",
                   alignment: Alignment.bottomCenter,
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
-                  fit: BoxFit.cover,),
+                  fit: BoxFit.fitWidth,),
                 Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0, bottom: 130.0),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Icon(Icons.arrow_back_ios),
-                            Text("Американец", style: TextStyle(fontSize: 20.0),),
-                            Icon(Icons.favorite, color: Color.fromRGBO(108, 62, 126, 1.0),)
-                          ]),
-                      const SizedBox(height: 15.0,),
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Icon(Icons.arrow_back_ios),
+                              Text(iceCream.name, style: const TextStyle(fontSize: 22.0),),
+                              const Icon(Icons.favorite, color: Color.fromRGBO(128, 82, 146, 1.0), size: 30.0,)
+                            ]),
+                        const SizedBox(height: 5.0,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(iceCream.shop, style: const TextStyle(fontSize: 14.0, color: Colors.black54),)
+                          ],
+                        ),
+                      ]),
+                      Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text(iceCream.price, style: const TextStyle(
+                                    fontSize: 26,
+                                    color: Color.fromRGBO(108, 62, 126, 1.0),
+                                    fontWeight: FontWeight.bold,
+                                ),
+                                )],
+                            ),
+                            const SizedBox(height: 25.0,),
+                            Row(
+                              children: [
+                                Text("Масса нетто: ${iceCream.weight}", style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
+                                )],
+                            ),
+                            const SizedBox(height: 25.0,),
+                            Row(
+                              children: [
+                                Flexible(
+                                  child: Text(iceCream.description,
+                                    style: const TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black,
+                                  ),
+                                  ),
+                                )],
+                            ),
+                            const SizedBox(height: 30.0,),
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.of(context).pushNamed("/ice_cream_list");
+                              },
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                                  color: Color.fromRGBO(108, 62, 126, 1.0),
+                                ),
+                                alignment: Alignment.center,
+                                padding: const EdgeInsets.all(15.0),
+                                width: MediaQuery.of(context).size.width,
+                                child: const Text("Посмотреть наличие",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                ),),
+                              )),
+                          ],
+                      )
                       // Row(
                       //     children: [
                       //       DropdownButton<String>(
@@ -184,6 +264,7 @@ class _IceCreamPageState extends State<IceCreamPage> {
                   ),
                 ),
                 Container(
+                  //alignment: Alignment.bottomCenter,
                   decoration: const BoxDecoration(
                       boxShadow: [BoxShadow(
                         color: Colors.black26,

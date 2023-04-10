@@ -242,7 +242,9 @@ class _MapPageState extends State<MapPage> {
                     BottomNavigationBarItem(
                       icon: IconButton(
                         icon: SvgPicture.asset("assets/images/nav_map.svg"),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("/map_page");
+                        },
                       ),
                       label: '',
                     ),
@@ -250,7 +252,9 @@ class _MapPageState extends State<MapPage> {
                       icon: IconButton(
                         icon:
                             SvgPicture.asset("assets/images/nav_ice_cream.svg"),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed("/ice_cream_list");
+                        },
                       ),
                       label: '',
                     ),

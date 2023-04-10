@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../shop.dart';
+import '../../../repositories/shop/models/shops_repository.dart';
 
 class ShopsPage extends StatefulWidget {
   const ShopsPage({super.key});
@@ -8,19 +9,18 @@ class ShopsPage extends StatefulWidget {
   @override
   State<ShopsPage> createState() => _ShopsPageState();
 }
-
 class _ShopsPageState extends State<ShopsPage> {
-  final List<Shop> shops = [
-    Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
-    Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
-    Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
-    Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
-    Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
-    Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
-    Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
-    Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
-    Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
-  ];
+  // final List<Shop> shops = [
+  //   Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
+  //   Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
+  //   Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
+  //   Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
+  //   Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
+  //   Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
+  //   Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
+  //   Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
+  //   Shop("Славица", "г.Красноярск, ул.Кутузова, д.45"),
+  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,7 +135,7 @@ class _ShopsPageState extends State<ShopsPage> {
                                               style: const TextStyle(fontSize: 20),),
                                           subtitle: Text(shops[index].address),
                                           leading: IconButton(
-                                            icon: SvgPicture.asset("assets/images/icon.svg", width: 50,),
+                                            icon: shops[index].photo,
                                             onPressed: null,
                                           ),
                                           //onTap: () => print("${shops[index].name} - tap"),

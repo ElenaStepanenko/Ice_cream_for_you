@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../ice_cream.dart';
+import '../../../repositories/ice_cream/models/ice_cream_repository.dart';
 
 class IceCreamsPage extends StatefulWidget {
   const IceCreamsPage({super.key});
@@ -10,16 +10,16 @@ class IceCreamsPage extends StatefulWidget {
 }
 
 class _IceCreamsPageState extends State<IceCreamsPage> {
-  final List<IceCream> iceCreams = [
-    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-    IceCream("Американец", Image.asset("assets/images/ice_cream_photo"), "85 руб."),
-  ];
+  // final List<IceCream> iceCreams = [
+  //   IceCream("Американец", Image.asset("assets/images/item_ice_cream_photo.png"), "85 руб."),
+  //   IceCream("Американец", Image.asset("assets/images/item_ice_cream_photo.png"), "85 руб."),
+  //   IceCream("Американец", Image.asset("assets/images/item_ice_cream_photo.png"), "85 руб."),
+  //   IceCream("Американец", Image.asset("assets/images/item_ice_cream_photo.png"), "85 руб."),
+  //   IceCream("Американец", Image.asset("assets/images/item_ice_cream_photo.png"), "85 руб."),
+  //   IceCream("Американец", Image.asset("assets/images/item_ice_cream_photo.png"), "85 руб."),
+  //   IceCream("Американец", Image.asset("assets/images/item_ice_cream_photo.png"), "85 руб."),
+  //   IceCream("Американец", Image.asset("assets/images/item_ice_cream_photo.png"), "85 руб."),
+  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,70 +124,73 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
                         child: GridView.count(
                           padding: const EdgeInsets.symmetric(horizontal: 10.0),
                           crossAxisCount: 2,
-                          childAspectRatio: 5/6,
+                          childAspectRatio: 4/5,
                           shrinkWrap: true,
-                          //physics: const NeverScrollableScrollPhysics(),
-                          //direction: Axis.horizontal,
-                          //spacing: 2,
-                          //runSpacing: 25,
-                          // alignment: WrapAlignment.spaceBetween,
-                          // runAlignment: WrapAlignment.start,
                           children:
-                            List.generate(iceCreams.length, (index) => Button(
+                            List.generate(iceCreams.length, (index) => GestureDetector(
+                              onTap: (){
+                                Navigator.of(context).pushNamed("/ice_cream_page",
+                                arguments: iceCreams[index],
+                                );
+                              },
                               child: Container(
-                                    decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                                    ),
-                                    //padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                                    margin: const EdgeInsets.all(5.0),
-                                    //width: 50,
-                                    height: 158,
-                                    //color: Colors.white,
-                                    child: Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            Image.asset("assets/images/ice_cream_photo.png",
-                                              alignment: Alignment.center,),
-                                            SvgPicture.asset("assets/images/iten_decor.svg",
-                                              alignment: Alignment.bottomCenter,
-                                              width: MediaQuery.of(context).size.width,
-                                              //height: MediaQuery.of(context).size.height,
-                                              //fit: BoxFit.cover,
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(16.0),
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment: MainAxisAlignment.start,
-                                                    children: [
-                                                      SvgPicture.asset("assets/images/availability_icon.svg",),
-                                                    ],
-                                                  ),
-                                                  Column(
-                                                    children: [
-                                                      Row(
-                                                        children: [
-                                                          Text(iceCreams[index].price,
-                                                            style: const TextStyle(fontSize: 20, color: Color.fromRGBO(108, 62, 126, 1.0)),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      Row(
-                                                        children: [
-                                                          Text(iceCreams[index].name),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ],
+                                      padding: EdgeInsets.zero,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                                      ),
+                                      //padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                      margin: const EdgeInsets.all(5.0),
+                                      //width: 50,
+                                      height: 158,
+                                      //color: Colors.white,
+                                      child: Stack(
+                                            alignment: Alignment.center,
+                                            children: [
+                                              Container(
+                                                padding: const EdgeInsets.all(20.0),
+                                                child: iceCreams[index].photo,
                                               ),
+                                              SvgPicture.asset("assets/images/iten_decor.svg",
+                                                alignment: Alignment.bottomCenter,
+                                                width: MediaQuery.of(context).size.width,
+                                                //height: MediaQuery.of(context).size.height,
+                                                //fit: BoxFit.cover,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(16.0),
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                      children: [
+                                                        SvgPicture.asset("assets/images/availability_icon.svg",),
+                                                      ],
+                                                    ),
+                                                    Column(
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Text(iceCreams[index].price,
+                                                              style: const TextStyle(fontSize: 20, color: Color.fromRGBO(108, 62, 126, 1.0)),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: [
+                                                            Text(iceCreams[index].name),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
 
-                                            ),
-                                          ],
-                                        ),
+                                              ),
+                                            ],
+
+                                ),
                               ),
                             ),
                             // ListView.builder(
