@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class Shop {
