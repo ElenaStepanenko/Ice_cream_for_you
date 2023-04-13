@@ -70,11 +70,11 @@ class _IceCreamPageState extends State<IceCreamPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Icon(Icons.arrow_back_ios),
+                              IconButton(icon: const Icon(Icons.arrow_back_ios), onPressed: () { Navigator.of(context).pushNamed("/ice_cream_list"); },),
                               Text(iceCream.name, style: const TextStyle(fontSize: 22.0),),
                               const Icon(Icons.favorite, color: Color.fromRGBO(128, 82, 146, 1.0), size: 30.0,)
                             ]),
-                        const SizedBox(height: 5.0,),
+                        //const SizedBox(height: 5.0,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
