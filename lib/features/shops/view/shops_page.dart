@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:project/features/shops/view/seacrh_bar_for_shops.dart';
 import '../../../repositories/shop/models/shops_repository.dart';
 
 class ShopsPage extends StatefulWidget {
@@ -23,6 +24,12 @@ class _ShopsPageState extends State<ShopsPage> {
         filtredShops = shops.where((shops) => shops.name == value).toList();
         filterText = value;
       }
+    });
+  }
+
+  void updateShopsList(List<Shop> updatedShops) {
+    setState(() {
+      filtredShops = updatedShops;
     });
   }
 
@@ -67,17 +74,9 @@ class _ShopsPageState extends State<ShopsPage> {
                               ),
                             ],
                           ),
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              icon: Icon(
-                                Icons.search_rounded,
-                                size: 30.0,
-                              ),
-                              hintText: "Поиск",
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
+                          child: SearchBarShops(
+                            shops: filtredShops,
+                            onShopsListChanged: updateShopsList,
                           ),
                         ),
                         Container(

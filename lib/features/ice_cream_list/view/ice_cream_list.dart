@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:project/features/ice_cream_list/view/search_bar_for_list_icecream.dart';
 import '../../../repositories/ice_cream/models/ice_cream_repository.dart';
 
 class IceCreamsPage extends StatefulWidget {
@@ -24,6 +25,12 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
             iceCreams.where((iceCream) => iceCream.shop == value).toList();
         filterText = value;
       }
+    });
+  }
+
+  void updateIceCreamList(List<IceCream> updatedIceCream) {
+    setState(() {
+      filtredIceCream = updatedIceCream;
     });
   }
 
@@ -68,17 +75,9 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
                               ),
                             ],
                           ),
-                          child: const TextField(
-                            decoration: InputDecoration(
-                              icon: Icon(
-                                Icons.search_rounded,
-                                size: 30.0,
-                              ),
-                              hintText: "Поиск",
-                              border: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                              ),
-                            ),
+                          child: SearchBarIceCreams(
+                            iceCreams: filtredIceCream,
+                            onShopsListChanged: updateIceCreamList,
                           ),
                         ),
                         Container(

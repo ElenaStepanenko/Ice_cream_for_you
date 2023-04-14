@@ -1,51 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:project/repositories/shop/models/shops_repository.dart';
+import 'package:project/repositories/ice_cream/models/ice_cream_repository.dart';
 
-class SearchBarShops extends StatefulWidget {
-  final List<Shop> shops;
-  final Function(List<Shop>) onShopsListChanged;
-  const SearchBarShops(
-      {super.key, required this.shops, required this.onShopsListChanged});
+class SearchBarIceCreams extends StatefulWidget {
+  final List<IceCream> iceCreams;
+  final Function(List<IceCream>) onShopsListChanged;
+  const SearchBarIceCreams(
+      {super.key, required this.iceCreams, required this.onShopsListChanged});
 
   @override
-  State<SearchBarShops> createState() => _SearchBarShopState();
+  State<SearchBarIceCreams> createState() => _SearchBarIceCreamstate();
 }
 
-class _SearchBarShopState extends State<SearchBarShops> {
-  List<Shop> filterShops = [];
+class _SearchBarIceCreamstate extends State<SearchBarIceCreams> {
+  List<IceCream> filterIceCreams = [];
   final TextEditingController _textEditingController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-    filterShops = widget.shops;
+    filterIceCreams = widget.iceCreams;
   }
 
   void _onTextChanged(String value) {
     setState(() {
       if (_textEditingController.text.isNotEmpty) {
-        filterShops = widget.shops
-            .where((shops) =>
-                shops.name
+        filterIceCreams = widget.iceCreams
+            .where((iceCream) =>
+                iceCream.name
                     .toLowerCase()
                     .contains(_textEditingController.text.toLowerCase()) ||
-                shops.address
+                iceCream.price
                     .toLowerCase()
                     .contains(_textEditingController.text.toLowerCase()))
             .toList();
       } else {
-        filterShops = shops;
+        filterIceCreams = iceCreams;
       }
     });
-    widget.onShopsListChanged(filterShops);
+    widget.onShopsListChanged(filterIceCreams);
   }
 
   void _clearText() {
     setState(() {
       _textEditingController.clear();
-      filterShops = shops;
-      widget.onShopsListChanged(filterShops);
+      filterIceCreams = iceCreams;
+      widget.onShopsListChanged(filterIceCreams);
       _focusNode.unfocus();
     });
   }
