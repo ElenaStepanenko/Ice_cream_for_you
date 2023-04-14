@@ -13,6 +13,7 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromRGBO(218, 230, 252, 1.0),
       body: SafeArea(
         child: SizedBox(
