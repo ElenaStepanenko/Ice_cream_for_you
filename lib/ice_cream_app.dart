@@ -13,6 +13,7 @@ class IceCreamApp extends StatelessWidget {
       title: 'IceCreamForYou',
       theme: theme,
       routes: routes,
+      initialRoute: '/map_page',
     );
   }
 }
