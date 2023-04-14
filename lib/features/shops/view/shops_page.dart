@@ -13,6 +13,7 @@ class _ShopsPageState extends State<ShopsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromRGBO(218, 230, 252, 1.0),
       body: SafeArea(
         child: SizedBox(

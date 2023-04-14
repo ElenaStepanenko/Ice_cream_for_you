@@ -1,7 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:project/repositories/shop/models/shops_repository.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
@@ -18,7 +16,7 @@ class _SearchBarState extends State<SearchBar> {
       Completer<YandexMapController>();
   final TextEditingController _textEditingController = TextEditingController();
   List<Shop> _suggestions = [];
-  bool _isSearching = false;
+  final FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
@@ -27,9 +25,6 @@ class _SearchBarState extends State<SearchBar> {
   }
 
   void _onTextChanged(String value) {
-    setState(() {
-      _isSearching = true;
-    });
     setState(() {
       if (_textEditingController.text.isNotEmpty) {
         _suggestions = shops
@@ -45,7 +40,6 @@ class _SearchBarState extends State<SearchBar> {
       } else {
         _suggestions.clear();
       }
-      _isSearching = false;
     });
   }
 
@@ -53,6 +47,7 @@ class _SearchBarState extends State<SearchBar> {
     setState(() {
       _textEditingController.clear();
       _suggestions.clear();
+      _focusNode.unfocus();
     });
   }
 
@@ -73,6 +68,7 @@ class _SearchBarState extends State<SearchBar> {
         TextField(
           controller: _textEditingController,
           onChanged: _onTextChanged,
+          focusNode: _focusNode,
           decoration: InputDecoration(
             icon: const Icon(
               Icons.search_rounded,
@@ -88,23 +84,22 @@ class _SearchBarState extends State<SearchBar> {
                 : null,
           ),
         ),
-        _isSearching
-            ? const CircularProgressIndicator() // Индикатор загрузки во время поиска
-            : _suggestions.isNotEmpty
-                ? ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: _suggestions.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(_suggestions[index].name),
-                        subtitle: Text(_suggestions[index].address),
-                        onTap: () {
-                          moveToShop(_suggestions[index].point, mapController);
-                        },
-                      );
+        _suggestions.isNotEmpty
+            ? ListView.builder(
+                shrinkWrap: true,
+                itemCount: _suggestions.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(_suggestions[index].name),
+                    subtitle: Text(_suggestions[index].address),
+                    onTap: () {
+                      moveToShop(_suggestions[index].point, mapController);
+                      _clearText();
                     },
-                  )
-                : Container(),
+                  );
+                },
+              )
+            : Container(),
       ],
     );
   }
