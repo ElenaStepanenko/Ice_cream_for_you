@@ -221,41 +221,6 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
                             ),
                           ),
                         ),
-                        // ListView.builder(
-                        //     //scrollDirection: Axis.vertical,
-                        //     shrinkWrap: true,
-                        //     //padding: const EdgeInsets.all(10),
-                        //     itemCount: iceCreams.length,
-                        //     itemBuilder: (_, index) => Container(
-                        //       margin: const EdgeInsets.all(5.0),
-                        //       width: 50,
-                        //       height: 158,
-                        //       color: Colors.white,
-                        //       // child: Stack(
-                        //       //   children: [
-                        //       //     SvgPicture.asset("assets/images/iten_decor.svg",
-                        //       //       alignment: Alignment.topCenter,
-                        //       //       width: MediaQuery.of(context).size.width,
-                        //       //       height: MediaQuery.of(context).size.height,
-                        //       //       fit: BoxFit.cover,
-                        //       //     ),
-                        //       //     SvgPicture.asset("assets/images/availability_icon.svg"),
-                        //       //     Image.asset("assets/images/ice_cream_photo.png"),
-                        //       //     Row(
-                        //       //       mainAxisSize: MainAxisSize.max,
-                        //       //       children: [
-                        //       //         Text(iceCreams[index].price,
-                        //       //           style: const TextStyle(fontSize: 20),),
-                        //       //       ],
-                        //       //     ),
-                        //       //     Row(
-                        //       //       children: [
-                        //       //         Text(iceCreams[index].name),
-                        //       //       ],
-                        //       //     )
-                        //       //   ],
-                        //       // ),
-                        //     )),
                       ),
                     ),
                   ),
@@ -306,9 +271,7 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
                       icon: IconButton(
                         icon:
                             SvgPicture.asset("assets/images/nav_ice_cream.svg"),
-                        onPressed: () {
-                          Navigator.of(context).pushNamed("/ice_cream_list");
-                        },
+                        onPressed: () {},
                       ),
                       label: '',
                     ),

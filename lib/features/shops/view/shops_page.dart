@@ -186,9 +186,7 @@ class _ShopsPageState extends State<ShopsPage> {
                     BottomNavigationBarItem(
                       icon: IconButton(
                         icon: SvgPicture.asset("assets/images/nav_menu.svg"),
-                        onPressed: () {
-                          Navigator.of(context).pushNamed("/shop_page");
-                        },
+                        onPressed: () {},
                       ),
                       label: '',
                     ),

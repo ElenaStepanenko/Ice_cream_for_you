@@ -236,9 +236,7 @@ class _MapPageState extends State<MapPage> {
                       activeIcon: SvgPicture.asset("assets/images/active_icon_menu.svg", ),
                       icon: IconButton(
                         icon: SvgPicture.asset("assets/images/nav_map.svg"),
-                        onPressed: () {
-                          Navigator.of(context).pushNamed("/map_page");
-                        },
+                        onPressed: () {},
                       ),
                       label: '',
                     ),
