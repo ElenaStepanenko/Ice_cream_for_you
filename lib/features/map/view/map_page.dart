@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project/features/map/view/location.dart';
-import 'package:project/features/map/view/search_bar.dart';
+import 'package:project/features/map/view/search_bar_for_map.dart';
 import 'dart:math' as math;
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
