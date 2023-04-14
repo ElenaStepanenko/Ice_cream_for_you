@@ -118,6 +118,7 @@ class _MapPageState extends State<MapPage> {
                 children: [
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -152,7 +153,7 @@ class _MapPageState extends State<MapPage> {
                           // ),
                         ),
                         Container(
-                          alignment: Alignment.topLeft,
+                          // alignment: Alignment.topLeft,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30.0),
                             boxShadow: [
