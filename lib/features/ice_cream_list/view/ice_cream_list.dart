@@ -10,6 +10,23 @@ class IceCreamsPage extends StatefulWidget {
 }
 
 class _IceCreamsPageState extends State<IceCreamsPage> {
+  final List<String> filter = ['', 'Славица', 'Инмарко', 'Мороженое', 'Сладко'];
+  List<IceCream> filtredIceCream = iceCreams;
+  String filterText = 'Выбрать фирму';
+
+  void onFilterChange(String value) {
+    setState(() {
+      if (value == '') {
+        filtredIceCream = iceCreams;
+        filterText = 'Выбрать фирму';
+      } else {
+        filtredIceCream =
+            iceCreams.where((iceCream) => iceCream.shop == value).toList();
+        filterText = value;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,26 +117,26 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
                         Icons.arrow_drop_down,
                         color: Color.fromRGBO(59, 100, 228, 1.0),
                       ),
-                      items: <String>[
-                        'Славица',
-                        'Инмарко',
-                        'Мороженое',
-                        'Ice Cream'
-                      ].map((String value) {
+                      items: filter.map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
                         );
                       }).toList(),
-                      hint: const Text(
-                        'Выбрать фирму',
-                        style:
-                            TextStyle(color: Color.fromRGBO(59, 100, 228, 1.0)),
+                      hint: Text(
+                        filterText,
+                        style: const TextStyle(
+                            color: Color.fromRGBO(59, 100, 228, 1.0)),
                       ),
-                      onChanged: (_) {},
+                      onChanged: (String? selectedValue) {
+                        if (selectedValue != null) {
+                          onFilterChange(selectedValue);
+                        }
+                      },
                     )
                   ]),
                   //const SizedBox(height: 15.0,),
+                  // ignore: sized_box_for_whitespace
                   Container(
                     height: MediaQuery.of(context).size.height - 175,
                     width: MediaQuery.of(context).size.width,
@@ -129,12 +146,12 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
                       childAspectRatio: 4 / 5,
                       shrinkWrap: true,
                       children: List.generate(
-                        iceCreams.length,
+                        filtredIceCream.length,
                         (index) => GestureDetector(
                           onTap: () {
                             Navigator.of(context).pushNamed(
                               "/ice_cream_page",
-                              arguments: iceCreams[index],
+                              arguments: filtredIceCream[index],
                             );
                           },
                           child: Container(
@@ -154,7 +171,7 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
                               children: [
                                 Container(
                                   padding: const EdgeInsets.all(20.0),
-                                  child: iceCreams[index].photo,
+                                  child: filtredIceCream[index].photo,
                                 ),
                                 SvgPicture.asset(
                                   "assets/images/iten_decor.svg",
@@ -183,7 +200,7 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
                                           Row(
                                             children: [
                                               Text(
-                                                iceCreams[index].price,
+                                                filtredIceCream[index].price,
                                                 style: const TextStyle(
                                                     fontSize: 20,
                                                     color: Color.fromRGBO(
@@ -193,7 +210,7 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
                                           ),
                                           Row(
                                             children: [
-                                              Text(iceCreams[index].name),
+                                              Text(filtredIceCream[index].name),
                                             ],
                                           ),
                                         ],

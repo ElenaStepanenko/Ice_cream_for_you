@@ -139,18 +139,6 @@ class _MapPageState extends State<MapPage> {
                           ),
                           child:
                               SearchBar(mapController: mapControllerCompleter),
-                          // child: const TextField(
-                          //   decoration: InputDecoration(
-                          //     icon: Icon(
-                          //       Icons.search_rounded,
-                          //       size: 30.0,
-                          //     ),
-                          //     hintText: "Поиск",
-                          //     border: OutlineInputBorder(
-                          //       borderSide: BorderSide.none,
-                          //     ),
-                          //   ),
-                          // ),
                         ),
                         Container(
                           // alignment: Alignment.topLeft,

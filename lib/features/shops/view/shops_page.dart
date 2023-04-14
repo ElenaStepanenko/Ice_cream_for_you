@@ -10,6 +10,22 @@ class ShopsPage extends StatefulWidget {
 }
 
 class _ShopsPageState extends State<ShopsPage> {
+  final List<String> filter = ['', 'Славица', 'Инмарко', 'Мороженое', 'Сладко'];
+  List<Shop> filtredShops = shops;
+  String filterText = 'Выбрать фирму';
+
+  void onFilterChange(String value) {
+    setState(() {
+      if (value == '') {
+        filtredShops = shops;
+        filterText = 'Выбрать фирму';
+      } else {
+        filtredShops = shops.where((shops) => shops.name == value).toList();
+        filterText = value;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +44,8 @@ class _ShopsPageState extends State<ShopsPage> {
               fit: BoxFit.cover,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+              padding:
+                  const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
               child: Column(
                 children: [
                   Row(
@@ -99,44 +116,43 @@ class _ShopsPageState extends State<ShopsPage> {
                         Icons.arrow_drop_down,
                         color: Color.fromRGBO(59, 100, 228, 1.0),
                       ),
-                      items: <String>[
-                        'Славица',
-                        'Инмарко',
-                        'Мороженое',
-                        'Ice Cream'
-                      ].map((String value) {
+                      items: filter.map((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
                         );
                       }).toList(),
-                      hint: const Text(
-                        'Выбрать фирму',
-                        style:
-                            TextStyle(color: Color.fromRGBO(59, 100, 228, 1.0)),
+                      hint: Text(
+                        filterText,
+                        style: const TextStyle(
+                            color: Color.fromRGBO(59, 100, 228, 1.0)),
                       ),
-                      onChanged: (_) {},
+                      onChanged: (String? selectedValue) {
+                        if (selectedValue != null) {
+                          onFilterChange(selectedValue);
+                        }
+                      },
                     )
                   ]),
                   //const SizedBox(height: 15.0,),
+                  // ignore: sized_box_for_whitespace
                   Container(
                     height: MediaQuery.of(context).size.height - 175,
                     child: ListView.builder(
-
                         //padding: const EdgeInsets.all(20),
-                        itemCount: shops.length,
+                        itemCount: filtredShops.length,
                         itemBuilder: (_, index) => Card(
                               color: const Color.fromRGBO(255, 255, 255, 0.0),
                               elevation: 0,
                               margin: const EdgeInsets.only(top: 20),
                               child: ListTile(
                                 title: Text(
-                                  shops[index].name,
+                                  filtredShops[index].name,
                                   style: const TextStyle(fontSize: 20),
                                 ),
-                                subtitle: Text(shops[index].address),
+                                subtitle: Text(filtredShops[index].address),
                                 leading: IconButton(
-                                  icon: shops[index].photo,
+                                  icon: filtredShops[index].photo,
                                   onPressed: null,
                                 ),
                                 //onTap: () => print("${shops[index].name} - tap"),
