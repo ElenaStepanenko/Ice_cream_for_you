@@ -215,7 +215,7 @@ class _MapPageState extends State<MapPage> {
               ]),
               child: Stack(alignment: Alignment.bottomCenter, children: [
                 SvgPicture.asset(
-                  "assets/images/navbar_without_shadow.svg",
+                  "assets/images/2_nav_page.svg",
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
                 ),
@@ -233,6 +233,7 @@ class _MapPageState extends State<MapPage> {
                       label: '',
                     ),
                     BottomNavigationBarItem(
+                      activeIcon: SvgPicture.asset("assets/images/active_icon_menu.svg", ),
                       icon: IconButton(
                         icon: SvgPicture.asset("assets/images/nav_map.svg"),
                         onPressed: () {

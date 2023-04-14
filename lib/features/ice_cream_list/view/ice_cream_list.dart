@@ -274,7 +274,7 @@ class _IceCreamsPageState extends State<IceCreamsPage> {
               ]),
               child: Stack(alignment: Alignment.bottomCenter, children: [
                 SvgPicture.asset(
-                  "assets/images/navbar_without_shadow.svg",
+                  "assets/images/3_nav_page.svg",
                   //color: Colors.cyan,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
