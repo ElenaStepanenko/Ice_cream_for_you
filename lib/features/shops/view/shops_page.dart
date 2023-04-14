@@ -27,10 +27,8 @@ class _ShopsPageState extends State<ShopsPage> {
               fit: BoxFit.cover,
             ),
             Padding(
-              padding:
-                  const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+              padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
               child: Column(
-                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

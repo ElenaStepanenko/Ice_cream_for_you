@@ -151,6 +151,7 @@ class _MapPageState extends State<MapPage> {
                           ),
                         ),
                         Container(
+                          alignment: Alignment.topLeft,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30.0),
                             boxShadow: [
