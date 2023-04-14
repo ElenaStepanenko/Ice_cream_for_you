@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:project/features/map/view/location.dart';
+import 'package:project/features/map/view/search_bar.dart';
 import 'dart:math' as math;
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
@@ -97,6 +98,7 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
@@ -134,7 +136,7 @@ class _MapPageState extends State<MapPage> {
                               ),
                             ],
                           ),
-
+                          // child: SearchBar(mapController: mapControllerCompleter),
                           child: const TextField(
                             decoration: InputDecoration(
                               icon: Icon(
