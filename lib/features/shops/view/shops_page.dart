@@ -173,7 +173,7 @@ class _ShopsPageState extends State<ShopsPage> {
               ]),
               child: Stack(alignment: Alignment.bottomCenter, children: [
                 SvgPicture.asset(
-                  "assets/images/navbar_without_shadow.svg",
+                  "assets/images/1_nav_page.svg",
                   //color: Colors.cyan,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.cover,
